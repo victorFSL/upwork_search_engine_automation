@@ -14,14 +14,14 @@ class BingSelectors < SelectorsSearchEngine
   end
 
   def get_top_10_results
-    parent_element = @driver.find_elements(xpath: "//ol[@id='b_results']/li[@class='b_algo']")
+    parent_element = @driver.find_elements(xpath: "//main/ol[@id='b_results']/li[@class='b_algo']")
 
     parent_element.each do |element|
       # Exclude nested search results
-      next if @page_number == 1 && element.find_element(xpath: "//div[@class='b_rich']")
+      # next if @page_number == 1 && element.find_element(xpath: "//div[@class='b_rich']")
       url = element.find_element(css: 'h2 > a').attribute("href")
       title = element.find_element(css: 'h2 > a').text
-      description = element.find_element(css: '.b_caption p').text 
+      description = element.find_element(css: '.b_caption > p').text 
 
       @bing_results[url] = { title: title, description: description }
       @bing_results[url]["contains_keyword"] = "#{url} #{title} #{description}".downcase.include? @search_term
