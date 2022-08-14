@@ -89,3 +89,15 @@ To compare the searches results, we will use another command:
 
 This will print to STDOUT the url comparison.
 
+# Areas of interest in the APP
+
+To add a new search engine:
+> script/search_engines.rb (this to add the url and make the script recognize the new engine)
+create a file that inherits from the class in the file search_engines_selectors/selectors_search_engine.rb
+
+Change the number of results that we want scrapped from the search engines?
+> file: search_engines_selectors/selectors_search_engine.rb -> Change constant NUMBER_OF_RESULTS
+
+Add a new browser?
+> script/browsers_list.rb (this to add the browser and make the script recognize the added browser)
+and do not forget to add the driver to the drivers/ folder. 
